@@ -1,14 +1,7 @@
 # common utilities for grading
 from utils import isnumber
 
-roster = [
-    'Anderson','Ban','Becker',
-    'Blue','Capps','Conklin',
-    'Dickenson','Fritz','Haller',
-    'Hawley','Hess','Johnson',
-    'Karman','Kinley','LaMartina',
-    'McLean','Miles','Ottenlips',
-    'Porter','Sery','VanderKallen',
+roster = ['Ban','Haller',
     'aardvark',
     'aartiste',
     'zzzsolutions',

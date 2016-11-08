@@ -5,6 +5,7 @@ roster = ['Ban','Haller',
     'aardvark',
     'aartiste',
     'zzzsolutions',
+    'FinalProject',
 ]
 
 def print_table(table, header=[], leftColumn=[], topLeft=[],

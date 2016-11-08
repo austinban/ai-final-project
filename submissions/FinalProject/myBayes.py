@@ -1,7 +1,7 @@
 import traceback
 from submissions.FinalProject import state_crime
 from submissions.FinalProject import education
-from submissions.FinalProject import
+from submissions.FinalProject import state_demographics
 
 class DataFrame:
     data = []
@@ -24,6 +24,7 @@ def alumniTarget(string):
 
 crime = state_crime.get_crime_by_year(2009)
 education = education.get_all_states()
+state = state_demographics.get_all_states()
 
 for state in crime:
     try:

@@ -1,5 +1,7 @@
 import traceback
-from submissions.Ban import county_demographics
+from submissions.FinalProject import state_crime
+from submissions.FinalProject import education
+from submissions.FinalProject import state_demographics
 
 class DataFrame:
     data = []
@@ -7,9 +9,9 @@ class DataFrame:
     target = []
     target_names = []
 
-alumni = DataFrame()
-alumni.target = []
-alumni.data = []
+information = DataFrame()
+information.target = []
+information.data = []
 '''
 Extract data from the CORGIS elections, and merge it with the
 CORGIS demographics.  Both data sets are organized by county and state.
@@ -20,8 +22,11 @@ def alumniTarget(string):
         return 1
     return 0
 
-demographics = county_demographics.get_all_counties()
-for student in demographics:
+crime = state_crime.get_crime_by_year(2009)
+education = education.get_all_states()
+state = state_demographics.get_all_states()
+
+for state in crime:
     try:
         alumni.target.append(alumniTarget(student['Education']["Bachelor's Degree or Higher"]))
 

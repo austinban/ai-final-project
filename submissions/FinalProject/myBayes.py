@@ -75,6 +75,12 @@ for state in demographics:
     except:
         traceback.print_exc()
 
+
+intersection = {}
+for state in joint:
+    if 'Poverty' in joint[state] and 'RapeRate' in joint[state] and 'Funding' in joint[state]:
+        intersection[state] = joint[state]
+
 alumni.feature_names = [
     "Bachelor's Degree or Higher",
     "Persons Below Poverty Level",

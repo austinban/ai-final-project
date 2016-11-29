@@ -1,6 +1,5 @@
 import importlib
 import traceback
-import plotly
 from grading.util import roster, print_table
 from utils import isnumber
 # from logic import FolKB
@@ -47,11 +46,19 @@ def tryOne(label, frame):
                 tjust='rjust',
                 )
     y_pred = fit.predict(frame.data)
-    f = open('helloworld.html', 'w')
+    f = open(label + '.html', 'w')
 
     message = """<html>
     <head></head>
     <body>"""
+
+    #message += 'Means: '
+    message += '<strong>Means:</strong> ' + '<br>'.join(frame.feature_names[1:])
+
+    message += '<br><strong>Targets:</strong> '
+    message += '<br>'.join(frame.target_names)
+    message += '<br>'
+
     fakeTheta = []
     fakeTheta.extend([[('%6.3f' % x) if isnumber(x) else x for x in row]
             for row in fit.theta_])
@@ -59,6 +66,7 @@ def tryOne(label, frame):
         for j in i:
             message += j + '\n'
 
+    message += '<br>Number of mislabeled points out of a total {0} points : {1}'.format(len(frame.data), (frame.target != y_pred).sum())
     message+= """</body>
     </html>"""
 

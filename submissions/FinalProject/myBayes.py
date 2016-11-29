@@ -120,5 +120,5 @@ information.target_names = [
 ]
 
 Examples = {
-    'Murder Rate by Income and Highest Education': information,
+    'MurderRate-Income-HighestEd': information,
 }

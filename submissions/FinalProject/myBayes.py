@@ -12,6 +12,11 @@ class DataFrame:
 information = DataFrame()
 information.target = []
 information.data = []
+
+example = DataFrame()
+example.target = []
+example.data = []
+targetRate = 0
 '''
 Extract data from the CORGIS elections, and merge it with the
 CORGIS demographics.  Both data sets are organized by county and state.
@@ -91,6 +96,11 @@ def murderTarget(rate):
         return 1
     return 0
 
+def exampleTarget(rate):
+    if rate >= targetRate:
+        return 1
+    return 0
+
 '''
 Build the input frame, row by row.
 '''
@@ -119,6 +129,134 @@ information.target_names = [
     'Below 7 Murder Rate',
 ]
 
+#
+# Example Creation Magic below
+#
+
+exampleDict = {
+    'AssaultRate': 'Assault Rate',
+    'MurderRate': 'Murder Rate',
+    'RapeRate': 'Rape Rate',
+    'RobberyRate': 'Robbery Rate',
+    'BurglaryRate': 'Burglary Rate',
+    'LarcenyRate': 'Larceny Rate',
+    'MotorRate': 'Motor Rate',
+
+    'Funding': 'Total Funding',
+    'AttendanceRate': 'Attendance Rate',
+
+    'BachelorsDegree': "Bachelor's Degree or Higher",
+    'GED': 'High School or Higher',
+    'AmericanIndian': 'American Indian',
+    'Asian': 'Asian',
+    'Black': 'Black',
+    'Hispanic': 'Hispanic or Latino',
+    'Hawaiian': 'Hawaiian',
+    'TwoOrMore': 'Two or More Races',
+    'White': 'White',
+    'HouseholdIncome': 'Median Household Income',
+    'Poverty': 'Poverty',
+}
+
+for stateFN in intersection:
+    # choose the input values
+    example.data.append([
+
+    #Crime
+        #intersection[stateFN]['AssaultRate'],
+        #intersection[stateFN]['MurderRate'],
+        #intersection[stateFN]['RapeRate'],
+        #intersection[stateFN]['RobberyRate'],
+        #intersection[stateFN]['BurglaryRate'],
+        #intersection[stateFN]['LarcenyRate'],
+        #intersection[stateFN]['MotorRate'],
+
+    #Education
+        #intersection[stateFN]['Funding'],
+        intersection[stateFN]['AttendanceRate'],
+
+    #Demographics
+        #intersection[stateFN]['BachelorsDegree'],
+        #intersection[stateFN]['GED'],
+        #intersection[stateFN]['AmericanIndian'],
+        #intersection[stateFN]['Asian'],
+        intersection[stateFN]['Black'],
+        intersection[stateFN]['Hispanic'],
+        #intersection[stateFN]['Hawaiian'],
+        #intersection[stateFN]['TwoOrMore'],
+        intersection[stateFN]['White'],
+        #intersection[stateFN]['HouseholdIncome'],
+        #intersection[stateFN]['Poverty'],
+    ])
+
+for stateEX in intersection:
+    # choose the target
+    #mr = exampleTarget(intersection[stateEX]['AssaultRate'])
+    #mr = exampleTarget(intersection[stateEX]['MurderRate'])
+    mr = exampleTarget(intersection[stateEX]['RapeRate'])
+    #mr = exampleTarget(intersection[stateEX]['RobberyRate'])
+    #mr = exampleTarget(intersection[stateEX]['BurglaryRate'])
+    #mr = exampleTarget(intersection[stateEX]['LarcenyRate'])
+    #mr = exampleTarget(intersection[stateEX]['MotorRate'])
+
+    # choose the >= and below number
+    targetRate = 20
+
+    example.target.append(mr)
+
+
+example.feature_names = [
+    #Crime
+        #exampleDict['AssaultRate'],
+        #exampleDict['MurderRate'],
+        #exampleDict['RapeRate'],
+        #exampleDict['RobberyRate'],
+        #exampleDict['BurglaryRate'],
+        #exampleDict['LarcenyRate'],
+        #exampleDict['MotorRate'],
+
+    #Education
+        #exampleDict['Funding'],
+        exampleDict['AttendanceRate'],
+
+    #Demographics
+        #exampleDict['BachelorsDegree'],
+        #exampleDict['GED'],
+        #exampleDict['AmericanIndian'],
+        #exampleDict['Asian'],
+        exampleDict['Black'],
+        exampleDict['Hispanic'],
+        #exampleDict['Hawaiian'],
+        #exampleDict['TwoOrMore'],
+        exampleDict['White'],
+        #exampleDict['HouseholdIncome'],
+        #exampleDict['Poverty'],
+]
+
+example.target_names = [
+
+    #'>= ' + str(targetRate) + ' ' + 'Assault Rate',
+    #'>= ' + str(targetRate) + ' ' + 'Murder Rate',
+    '>= ' + str(targetRate) + ' ' + 'Rape Rate',
+    #'>= ' + str(targetRate) + ' ' + 'Robbery Rate',
+    #'>= ' + str(targetRate) + ' ' + 'Burglary Rate',
+    #'>= ' + str(targetRate) + ' ' + 'Larceny Rate',
+    #'>= ' + str(targetRate) + ' ' + 'Motor Rate',
+
+
+    #'Below ' + str(targetRate) + ' ' + 'Assault Rate',
+    #'Below ' + str(targetRate) + ' ' + 'Murder Rate',
+    'Below ' + str(targetRate) + ' ' + 'Rape Rate',
+    #'Below ' + str(targetRate) + ' ' + 'Robbery Rate',
+    #'Below ' + str(targetRate) + ' ' + 'Burglary Rate',
+    #'Below ' + str(targetRate) + ' ' + 'Larceny Rate',
+    #'Below ' + str(targetRate) + ' ' + 'Motor Rate',
+]
+
+
+
+
 Examples = {
     'MurderRate-Income-HighestEd': information,
+    'YourExample': example,
 }

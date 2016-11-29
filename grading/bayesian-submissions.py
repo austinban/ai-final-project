@@ -57,14 +57,14 @@ def tryOne(label, frame):
 
     message += '<br><strong>Targets:</strong> '
     message += '<br>'.join(frame.target_names)
-    message += '<br>'
 
     fakeTheta = []
     fakeTheta.extend([[('%6.3f' % x) if isnumber(x) else x for x in row]
             for row in fit.theta_])
     for i in fakeTheta:
+        message += '<br>'
         for j in i:
-            message += j + '\n'
+            message += j + '&emsp;'
 
     message += '<br>Number of mislabeled points out of a total {0} points : {1}'.format(len(frame.data), (frame.target != y_pred).sum())
     message+= """</body>

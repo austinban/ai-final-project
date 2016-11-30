@@ -1,11 +1,7 @@
 # common utilities for grading
 from utils import isnumber
 
-roster = ['Ban','Haller',
-    'aardvark',
-    'aartiste',
-    'zzzsolutions',
-    'FinalProject',
+roster = ['FinalProject',
 ]
 
 def print_table(table, header=[], leftColumn=[], topLeft=[],
